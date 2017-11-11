@@ -15,7 +15,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends Activity implements View.OnClickListener{
 
     private Context context;
     private ImageView image;
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         .show();
     }
 
-    private class GestureListener extends GestureDetector.SimpleOnGestureListener {
+    /*private class GestureListener extends GestureDetector.SimpleOnGestureListener {
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
             if (getSupportActionBar() != null && getSupportActionBar().isShowing()) {
@@ -133,5 +133,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         );
     }
-
+*/
 }
