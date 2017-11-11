@@ -5,16 +5,21 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-public class MainActivity extends Activity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Context context;
     private ImageView image;
+    private GestureDetectorCompat mGestureDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,15 +34,12 @@ public class MainActivity extends Activity implements View.OnClickListener{
         context = this;
         connectView();
 
+        //mGestureDetector = new GestureDetectorCompat(this, new GestureListener());
+        //hideUI();
+
     }
 
     private void connectView() {
-        //tvMain = (TextView) findViewById(R.id.tvMain);
-        //findViewById(R.id.btnNewGame).setOnClickListener(this);
-        //image = (ImageView) findViewById(R.id.btnNewGame);
-        //findViewById(R.id.btnNewGame).setOnClickListener(this);
-        //findViewById(R.id.btnOption).setOnClickListener(this);
-        //findViewById(R.id.btnExit).setOnClickListener(this);
         image = (ImageView) findViewById(R.id.btnPlay);
         findViewById(R.id.btnPlay).setOnClickListener(this);
     }
@@ -100,6 +102,36 @@ public class MainActivity extends Activity implements View.OnClickListener{
         })
         .setNegativeButton("No", null)
         .show();
+    }
+
+    private class GestureListener extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onSingleTapUp(MotionEvent e) {
+            if (getSupportActionBar() != null && getSupportActionBar().isShowing()) {
+                hideUI();
+            } else {
+                showSystemUI();
+            }
+            return true;
+        }
+    }
+
+    private void hideUI() {
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_IMMERSIVE |
+                        View.SYSTEM_UI_FLAG_FULLSCREEN | //Full screen mode
+                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE |     //Stable when using multiple flags
+                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | //avoid artifacts when FLAG_FULLSCREEN
+                        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+        );
+    }
+
+    private void showSystemUI() {
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        );
     }
 
 }

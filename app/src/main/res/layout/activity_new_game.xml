@@ -4,24 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:screenOrientation="landscape"
-
-    tools:context="com.team1.caro.minigamecaro.NewGameActivity"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:screenOrientation="sensorLandscape"
+    android:background="@drawable/background"
+    tools:context="NewGameActivity">
     <!--android:background="@drawable/bg"-->
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/border">
 
         <com.team1.caro.minigamecaro.view.GomokuPanel
             android:id="@+id/id_fir_panel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
+            android:background="@color/colorWhite"
             gomoku:gomoku_black_pic="@drawable/stone_b1"
-            gomoku:gomoku_board_color="#4b814c"
+            gomoku:gomoku_board_color="@android:color/holo_blue_dark"
             gomoku:gomoku_white_pic="@drawable/stone_w2" />
     </LinearLayout>
     <LinearLayout
@@ -29,35 +33,32 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
             <!--android:background="@drawable/bg"-->
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="77dp"
-                android:background="@drawable/avatar" />
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
+                <ImageView
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/avatar" />
                 <TextView
                     android:id="@+id/tvNickname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textSize="40sp"
+                    android:textColor="@android:color/holo_green_dark"
+                    android:textAlignment="center"
                     android:text="Nick name:" />
 
-                <TextView
-                    android:id="@+id/txtnumclick"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Num click: 10" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Score: 200" />
-            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvScore"
+                android:text="200"
+                android:textAlignment="center"
+                android:textColor="@android:color/holo_orange_light"
+                android:textSize="60sp" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -65,25 +66,20 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="100"
-                android:text="Back" />
+                android:id="@+id/btnReset"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:background="@drawable/refresh"/>
 
             <Button
-                android:id="@+id/button3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="100"
-                android:text="Resum" />
-
-            <Button
-                android:id="@+id/button4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="100"
-                android:text="Restart" />
+                android:id="@+id/btnHome"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:background="@drawable/home"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

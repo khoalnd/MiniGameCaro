@@ -2,6 +2,7 @@ package com.team1.caro.minigamecaro;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,6 +17,7 @@ import com.team1.caro.minigamecaro.view.GomokuPanel;
 public class NewGameActivity extends Activity {
     private TextView tvNickname;
     private GomokuPanel mFIRPanel;
+    private TextView tvScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,13 @@ public class NewGameActivity extends Activity {
 
         initView();
         tvNickname = (TextView) findViewById(R.id.tvNickname);
+        tvScore = (TextView) findViewById(R.id.tvScore);
+        Typeface nicknameFont = Typeface.createFromAsset(getAssets(), "font/FFF_Tusj.ttf");
+        Typeface scoreFont = Typeface.createFromAsset(getAssets(), "font/Chunkfive.otf");
+
+        tvNickname.setTypeface(nicknameFont);
+        tvScore.setTypeface(scoreFont);
+
         Intent intent = getIntent();
         if (intent != null) {
             Bundle bundle = intent.getBundleExtra(NickNameActivity.BUNDLE);
