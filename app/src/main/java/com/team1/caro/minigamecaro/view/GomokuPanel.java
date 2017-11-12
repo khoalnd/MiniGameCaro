@@ -22,7 +22,7 @@ import java.util.List;
 import com.team1.caro.minigamecaro.R;
 
 public class GomokuPanel extends View {
-    private static final int MAX_LINE = 20;
+    private static final int MAX_LINE = 15;
     private float mLineHeight;
 
     /**
