@@ -48,12 +48,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <ImageButton
-                    android:id="@+id/btnSpeaker"
+                <CheckBox
+                    android:id="@+id/ckbMusic"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:layout_marginLeft="100dp"
-                    android:background="@drawable/speaker" />
+                    android:layout_marginLeft="50dp"
+                    android:button="@drawable/music"
+                    android:text="@null" />
 
                 <ImageButton
                     android:id="@+id/btnInfo"

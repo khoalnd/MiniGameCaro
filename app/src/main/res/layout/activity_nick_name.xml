@@ -48,22 +48,31 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+
         android:padding="10dp"
         android:weightSum="1">
 
-        <ImageButton
-            android:id="@+id/btnYes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/yes"/>
-        <ImageButton
-            android:id="@+id/btnNo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/no" />
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:weightSum="1">
 
+            <ImageButton
+                android:id="@+id/btnYes"
+                android:layout_marginLeft="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/yes"/>
+
+            <ImageButton
+                android:id="@+id/btnNo"
+                android:layout_marginLeft="400dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/no"/>
+        </RelativeLayout>
 
 
     </LinearLayout>

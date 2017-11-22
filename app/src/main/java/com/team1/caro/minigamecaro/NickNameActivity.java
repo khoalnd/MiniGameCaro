@@ -14,6 +14,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.content.Intent;
 
@@ -22,12 +23,11 @@ import android.content.Intent;
  * status bar and navigation/system bar) with user interaction.
  */
 public class NickNameActivity extends Activity {
-    private ImageView btnSendData;
+    private ImageButton btnSendData;
     private EditText edtNickname;
     public static final String NICKNAME = "nickname";
     public static final String BUNDLE = "bundel";
-    private ImageView btnNo;
-    private Context context;
+    private ImageButton btnNo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,23 +38,24 @@ public class NickNameActivity extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_nick_name);
 
-        context = this;
-        btnSendData = (ImageView) findViewById(R.id.btnYes);
-        btnNo = (ImageView) findViewById(R.id.btnNo);
+        //link NewGameActivity
         edtNickname = (EditText) findViewById(R.id.txtNickname);
+        btnSendData = (ImageButton) findViewById(R.id.btnYes);
         btnSendData.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 byBundle();
             }
         });
 
+        //return home
+        btnNo = (ImageButton) findViewById(R.id.btnNo);
         btnNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, MainActivity.class);
-                // start Main Activity
+                Intent intent = new Intent(NickNameActivity.this, MainActivity.class);
                 startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
     }
@@ -65,5 +66,6 @@ public class NickNameActivity extends Activity {
         bundle.putString(NICKNAME, edtNickname.getText().toString());
         intent.putExtra(BUNDLE, bundle);
         startActivity(intent);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }

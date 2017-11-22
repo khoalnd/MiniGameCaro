@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AlertDialog;
@@ -13,14 +14,26 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.ToggleButton;
 
-public class MainActivity extends Activity implements View.OnClickListener{
+import java.io.IOException;
+
+public class MainActivity extends Activity {
 
     private Context context;
-    private ImageView image;
+    private ImageView btnPlay;
+    private int if_music;
+    private int if_sound;
+    private ImageView musicViewButton;
+    //private ImageView soundViewButton;
     private GestureDetectorCompat mGestureDetector;
 
+    MediaPlayer music = new MediaPlayer();
+    CheckBox checkMusic;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,65 +44,56 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
         setContentView(R.layout.activity_main);
 
+        if_music = 0;
+        if_sound = 0;
+
+        //musicViewButton = (ImageView)findViewById(R.id.btnSpeaker);
+        //soundViewButton = (ImageView)findViewById(R.id.toggleButton2);
+
+
+        //nhac nen
+        checkMusic = (CheckBox) findViewById(R.id.ckbMusic);
+        checkMusic.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean kt) {
+                if(kt){
+                    music.stop();
+                } else
+                    try {
+                        music.prepare();
+                        music.start();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+            }
+        });
+
+        music = MediaPlayer.create(this, R.raw.bgm);
+        music.start();
+
+        //link NickNameActivity
+        btnPlay = (ImageView) findViewById(R.id.btnPlay);
+        btnPlay.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, NickNameActivity.class);
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+        });
+
+
+
+
+        //==========================================================================
         context = this;
-        connectView();
 
         //mGestureDetector = new GestureDetectorCompat(this, new GestureListener());
         //hideUI();
 
     }
-
-    private void connectView() {
-        image = (ImageView) findViewById(R.id.btnPlay);
-        findViewById(R.id.btnPlay).setOnClickListener(this);
-    }
-
-
-    @Override
-    public void onClick(View view) {
-        int id = view.getId();
-        switch (id) {
-//            case R.id.btnOption:
-//                option();
-//                break;
-            case R.id.btnPlay:
-                nickname();
-                break;
-//            case R.id.btnExit:
-//                exit();
-//                break;
-        }
-    }
-
-    private void newgame() {
-        // create intent to show Option Activity
-        Intent intent = new Intent(context, NewGameActivity.class);
-
-        // start NewGame Activity
-        startActivity(intent);
-    }
-
-    private void nickname() {
-        // create intent to show NickName Activity
-        Intent intent = new Intent(context, NickNameActivity.class);
-
-        // start NickName Activity
-        startActivity(intent);
-    }
-
+//when click back
     private void exit() {
-        /*new AlertDialog.Builder(this)
-                .setMessage("Are you sure you want to exit?")
-                .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        finish();
-                        System.exit(0);
-                    }
-                })
-                .setNegativeButton("No", null)
-                .show();
-        */
         AlertDialog.Builder buider;
         buider = new AlertDialog.Builder(context);
         buider.setMessage("Are you sure you want to exit?")

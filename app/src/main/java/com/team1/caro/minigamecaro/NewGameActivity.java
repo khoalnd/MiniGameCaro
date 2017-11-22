@@ -16,11 +16,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.team1.caro.minigamecaro.view.GomokuPanel;
+//import com.team1.caro.minigamecaro.view.GomokuPanel;
 
 public class NewGameActivity extends Activity implements View.OnClickListener{
     private TextView tvNickname;
-    private GomokuPanel mFIRPanel;
+    //private GomokuPanel mFIRPanel;
     private TextView tvScore;
     private Context context;
     private Button btnReset;
@@ -35,7 +35,7 @@ public class NewGameActivity extends Activity implements View.OnClickListener{
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_new_game);
         connectView();
-        initView();
+        //initView();
         tvNickname = (TextView) findViewById(R.id.tvNickname);
         tvScore = (TextView) findViewById(R.id.tvScore);
         Typeface nicknameFont = Typeface.createFromAsset(getAssets(), "font/FFF_Tusj.ttf");
@@ -56,9 +56,9 @@ public class NewGameActivity extends Activity implements View.OnClickListener{
 
     }
 
-    private void initView() {
+    /*private void initView() {
         mFIRPanel = (GomokuPanel) findViewById(R.id.id_fir_panel);
-    }
+    }*/
 
     private void connectView() {
         btnReset = (Button) findViewById(R.id.btnReset);

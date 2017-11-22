@@ -18,15 +18,11 @@
         android:layout_marginRight="20dp"
         android:background="@drawable/border">
 
-        <com.team1.caro.minigamecaro.view.GomokuPanel
-            android:id="@+id/id_fir_panel"
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:background="@color/colorWhite"
-            gomoku:gomoku_black_pic="@drawable/stone_b1"
-            gomoku:gomoku_board_color="@android:color/holo_blue_dark"
-            gomoku:gomoku_white_pic="@drawable/stone_w2" />
+            android:layout_weight="1"
+            android:src="@android:drawable/btn_star" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
